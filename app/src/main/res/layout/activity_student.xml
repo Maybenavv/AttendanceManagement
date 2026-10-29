@@ -18,7 +18,18 @@
             android:orientation="horizontal"
             android:gravity="center_vertical"
             android:layout_marginBottom="24dp">
-
+            <TextView
+                android:id="@+id/backHomeButton"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:gravity="center_vertical"
+                android:text="‹  Back to Home"
+                android:textColor="#2563EB"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:clickable="true"
+                android:focusable="true"
+                android:contentDescription="Return to Home"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

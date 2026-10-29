@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/homeRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="#F4F7FB">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_marginBottom="22dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ATTENDANCE HUB"
+                    android:textColor="#64748B"
+                    android:textSize="12sp"/>
+
+                <TextView
+                    android:id="@+id/homeTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Home"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:textColor="#17376D"/>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/homeLogoutButton"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:text="Logout"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#DC2626"/>
+        </LinearLayout>
+
+        <!-- User information -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:background="@drawable/home_blue_card"
+            android:layout_marginBottom="18dp">
+
+            <TextView
+                android:id="@+id/homeRoleLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ACCOUNT"
+                android:textColor="#DBEAFE"
+                android:textSize="12sp"/>
+
+            <TextView
+                android:id="@+id/homeName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Loading..."
+                android:textColor="#FFFFFF"
+                android:textSize="23sp"
+                android:textStyle="bold"
+                android:layout_marginTop="12dp"/>
+
+            <TextView
+                android:id="@+id/homeEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#E0EAFF"
+                android:textSize="14sp"
+                android:layout_marginTop="6dp"/>
+        </LinearLayout>
+
+        <!-- Dynamic summary -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/card_bg"
+            android:padding="20dp"
+            android:layout_marginBottom="24dp">
+
+            <TextView
+                android:id="@+id/homeSummaryHeading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="OVERVIEW"
+                android:textColor="#64748B"
+                android:textSize="12sp"/>
+
+            <TextView
+                android:id="@+id/homeSummaryValue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Loading..."
+                android:textColor="#17376D"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"/>
+
+            <ProgressBar
+                android:id="@+id/homeProgress"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:max="100"
+                android:progress="0"
+                android:progressTint="#2563EB"
+                android:progressBackgroundTint="#E2E8F0"
+                android:layout_marginTop="14dp"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/homeSummaryDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#64748B"
+                android:textSize="13sp"
+                android:layout_marginTop="10dp"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Quick Access"
+            android:textColor="#17376D"
+            android:textSize="19sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="14dp"/>
+
+        <LinearLayout
+            android:id="@+id/homeDetailsPanel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/card_bg"
+            android:padding="20dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                android:id="@+id/homeDetailsTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="View Details  ›"
+                android:textColor="#17376D"
+                android:textSize="17sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/homeDetailsDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#64748B"
+                android:textSize="13sp"
+                android:layout_marginTop="5dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/homeProfilePanel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/card_bg"
+            android:padding="20dp"
+            android:clickable="true"
+            android:focusable="true">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="My Profile  ›"
+                android:textColor="#17376D"
+                android:textSize="17sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Edit name and change password"
+                android:textColor="#64748B"
+                android:textSize="13sp"
+                android:layout_marginTop="5dp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

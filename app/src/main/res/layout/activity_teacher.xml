@@ -27,7 +27,18 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical">
-
+                <TextView
+                    android:id="@+id/backHomeButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:gravity="center_vertical"
+                    android:text="‹  Back to Home"
+                    android:textColor="#2563EB"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:contentDescription="Return to Home"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -55,7 +66,7 @@
                 android:backgroundTint="#DC2626"/>
         </LinearLayout>
 
-        <!-- Subject Management -->
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -85,6 +85,8 @@ public class TeacherActivity extends AppCompatActivity {
     protected void onCreate(Bundle state) {
         super.onCreate(state);
         setContentView(R.layout.activity_teacher);
+        findViewById(R.id.backHomeButton)
+                .setOnClickListener(v -> finish());
 
         applyInsets();
 

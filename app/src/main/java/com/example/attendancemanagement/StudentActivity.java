@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -26,6 +27,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.*;
 
 import java.util.ArrayList;
+import android.graphics.Typeface;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Locale;
@@ -64,6 +66,8 @@ public class StudentActivity extends AppCompatActivity {
     protected void onCreate(Bundle state) {
         super.onCreate(state);
         setContentView(R.layout.activity_student);
+        findViewById(R.id.backHomeButton)
+                .setOnClickListener(v -> finish());
 
         applyInsets();
 
@@ -235,7 +239,7 @@ public class StudentActivity extends AppCompatActivity {
         subjectName.setTextSize(15);
         subjectName.setTextColor(
                 Color.parseColor("#1E293B"));
-        subjectName.setTypeface(null, 1);
+        subjectName.setTypeface(null, Typeface.BOLD);
 
         details.addView(subjectName);
 

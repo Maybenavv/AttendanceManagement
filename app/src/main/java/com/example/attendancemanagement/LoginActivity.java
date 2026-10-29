@@ -3,11 +3,11 @@ package com.example.attendancemanagement;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -24,31 +24,32 @@ public class LoginActivity extends AppCompatActivity {
             "https://attendance-management-a116e-default-rtdb.asia-southeast1.firebasedatabase.app";
 
     private FirebaseAuth auth;
-    private TextInputEditText email, password;
+
+    private TextInputEditText email;
+    private TextInputEditText password;
     private Button login;
     private ProgressBar progress;
 
     @Override
     protected void onCreate(Bundle state) {
         super.onCreate(state);
+
         setContentView(R.layout.activity_login);
-        Toast.makeText(
-                this,
-                "Login screen loaded",
-                Toast.LENGTH_LONG
-        ).show();
 
-        Log.d(TAG, "LoginActivity started");
-
+        // Initialize Firebase Authentication
         auth = FirebaseAuth.getInstance();
 
+        // Initialize UI elements
         email = findViewById(R.id.emailInput);
         password = findViewById(R.id.passwordInput);
         login = findViewById(R.id.loginButton);
         progress = findViewById(R.id.progress);
 
-        if (email == null || password == null ||
-                login == null || progress == null) {
+        // Check required UI elements
+        if (email == null ||
+                password == null ||
+                login == null ||
+                progress == null) {
 
             Log.e(TAG, "Required login views are missing");
 
@@ -61,41 +62,74 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
+        // Hide loading indicator initially
+        setLoading(false);
+
+        // Sign in only when the button is clicked
         login.setOnClickListener(v -> signIn());
 
-        // Automatic routing disabled temporarily for testing.
-        // Restore after confirming both dashboards work.
+        // Automatic login intentionally disabled.
+        // Existing Firebase sessions are not automatically routed.
     }
 
     private void signIn() {
 
-        String e = String.valueOf(email.getText()).trim();
-        String p = String.valueOf(password.getText());
+        String emailAddress =
+                String.valueOf(email.getText()).trim();
 
-        if (e.isEmpty() || p.isEmpty()) {
-            toast("Enter email and password");
+        String passwordValue =
+                String.valueOf(password.getText());
+
+        // Validate inputs
+        if (emailAddress.isEmpty()) {
+            email.setError("Enter your email");
+            email.requestFocus();
             return;
         }
 
+        if (passwordValue.isEmpty()) {
+            password.setError("Enter your password");
+            password.requestFocus();
+            return;
+        }
+
+        // Show spinner and disable Sign In button
         setLoading(true);
 
-        auth.signInWithEmailAndPassword(e, p)
+        auth.signInWithEmailAndPassword(
+                        emailAddress,
+                        passwordValue
+                )
                 .addOnCompleteListener(this, task -> {
 
                     if (task.isSuccessful()) {
-                        Log.d(TAG, "Firebase authentication successful");
+
+                        Log.d(
+                                TAG,
+                                "Firebase authentication successful"
+                        );
+
+                        // Check account role
                         routeUser();
+
                     } else {
+
                         setLoading(false);
 
-                        Exception exception = task.getException();
+                        Exception error = task.getException();
 
-                        Log.e(TAG, "Login failed", exception);
+                        Log.e(
+                                TAG,
+                                "Firebase authentication failed",
+                                error
+                        );
 
-                        toast("Login failed: " +
-                                (exception != null
-                                        ? exception.getMessage()
-                                        : "Unknown error"));
+                        toast(
+                                "Login failed: " +
+                                        (error != null
+                                                ? error.getMessage()
+                                                : "Unknown error")
+                        );
                     }
                 });
     }
@@ -106,25 +140,30 @@ public class LoginActivity extends AppCompatActivity {
 
         if (user == null) {
             setLoading(false);
+            toast("Unable to get signed-in user");
             return;
         }
 
+        // Keep spinner visible while checking role
         setLoading(true);
 
-        FirebaseDatabase.getInstance(DATABASE_URL)
+        FirebaseDatabase
+                .getInstance(DATABASE_URL)
                 .getReference("users")
                 .child(user.getUid())
                 .child("role")
                 .get()
                 .addOnCompleteListener(this, task -> {
 
-                    setLoading(false);
-
                     if (!task.isSuccessful()) {
 
-                        Log.e(TAG,
+                        setLoading(false);
+
+                        Log.e(
+                                TAG,
                                 "Database role lookup failed",
-                                task.getException());
+                                task.getException()
+                        );
 
                         toast("Unable to read account role");
                         return;
@@ -133,39 +172,68 @@ public class LoginActivity extends AppCompatActivity {
                     if (task.getResult() == null ||
                             !task.getResult().exists()) {
 
+                        setLoading(false);
+
                         toast("Account profile not found");
                         return;
                     }
 
-                    String role =
-                            task.getResult().getValue(String.class);
+                    String role = task.getResult()
+                            .getValue(String.class);
 
-                    Class<?> target;
+                    if ("teacher".equals(role) ||
+                            "student".equals(role)) {
 
-                    if ("teacher".equals(role)) {
-                        target = TeacherActivity.class;
-                    } else if ("student".equals(role)) {
-                        target = StudentActivity.class;
+                        Log.d(
+                                TAG,
+                                "Opening HomeActivity for: " + role
+                        );
+
+                        // Open shared Home page
+                        Intent intent = new Intent(
+                                LoginActivity.this,
+                                HomeActivity.class
+                        );
+
+                        // Remove Login from back stack
+                        intent.addFlags(
+                                Intent.FLAG_ACTIVITY_NEW_TASK |
+                                        Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        );
+
+                        startActivity(intent);
+                        finish();
+
                     } else {
-                        toast("Invalid user role");
-                        return;
+
+                        setLoading(false);
+
+                        toast("Invalid account role");
                     }
-
-                    Log.d(TAG, "Opening dashboard for role: " + role);
-
-                    startActivity(new Intent(this, target));
-                    finish();
                 });
     }
 
-    private void setLoading(boolean value) {
+    private void setLoading(boolean loading) {
 
-        login.setEnabled(!value);
-        progress.setVisibility(value ? View.VISIBLE : View.GONE);
+        if (login == null || progress == null) {
+            return;
+        }
+
+        // Prevent repeated login attempts
+        login.setEnabled(!loading);
+
+        // Show spinner only during authentication
+        progress.setVisibility(
+                loading ? View.VISIBLE : View.GONE
+        );
     }
 
     private void toast(String message) {
 
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+        Toast.makeText(
+                this,
+                message,
+                Toast.LENGTH_LONG
+        ).show();
     }
 }
