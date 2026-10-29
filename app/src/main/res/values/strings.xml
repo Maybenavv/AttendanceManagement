@@ -1,0 +1,14 @@
+<resources><string name="app_name">Attendance Hub</string>
+
+    <string name="attendance_row">%1$s • %2$s\n%3$s</string>
+
+    <string name="attendance_summary">%1$d / %2$d classes attended\n%3$.1f%% attendance</string>
+
+    <string name="no_attendance">No attendance records yet.</string>
+
+    <string name="attendance_error">Unable to load attendance: %1$s</string>
+    <string name="student_heading">My Attendance</string>
+    <string name="logout">Logout</string>
+    <string name="loading_attendance">Loading attendance...</string>
+    <string name="attendance_history">Attendance History</string>
+</resources>

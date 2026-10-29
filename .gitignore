@@ -1,0 +1,22 @@
+# Gradle and build files
+.gradle/
+**/build/
+
+# Android Studio
+.idea/
+*.iml
+local.properties
+
+# Firebase configuration
+google-services.json
+**/google-services.json
+
+# Sensitive files
+*.jks
+*.keystore
+service-account*.json
+*adminsdk*.json
+
+# Other
+.DS_Store
+Thumbs.db

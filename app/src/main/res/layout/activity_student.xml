@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/studentRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F4F7FB"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="24dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="My Attendance"
+                android:textColor="#17376D"
+                android:textSize="23sp"
+                android:textStyle="bold"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/logoutButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Logout"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#DC2626"
+                app:cornerRadius="24dp"
+                xmlns:app="http://schemas.android.com/apk/res-auto"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/card_bg"
+            android:padding="20dp"
+            android:layout_marginBottom="26dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="OVERALL ATTENDANCE"
+                android:textSize="12sp"
+                android:letterSpacing="0.08"
+                android:textColor="#64748B"/>
+
+            <TextView
+                android:id="@+id/percentageText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="0.0%"
+                android:textSize="34sp"
+                android:textStyle="bold"
+                android:textColor="#17376D"
+                android:layout_marginTop="8dp"/>
+
+            <ProgressBar
+                android:id="@+id/attendanceProgress"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:max="100"
+                android:progress="0"
+                android:progressTint="#2563EB"
+                android:progressBackgroundTint="#E2E8F0"
+                android:layout_marginTop="14dp"/>
+
+            <TextView
+                android:id="@+id/summary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Loading attendance..."
+                android:textColor="#64748B"
+                android:textSize="13sp"
+                android:layout_marginTop="12dp"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Subject Attendance"
+            android:textColor="#17376D"
+            android:textSize="19sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="14dp"/>
+
+        <LinearLayout
+            android:id="@+id/attendanceList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"/>
+
+    </LinearLayout>
+</ScrollView>

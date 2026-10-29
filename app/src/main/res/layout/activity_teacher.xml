@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/teacherRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F4F7FB"
+    android:fillViewport="true"
+    android:clipToPadding="false">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- Header -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="26dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TEACHER PORTAL"
+                    android:textColor="#64748B"
+                    android:textSize="11sp"
+                    android:letterSpacing="0.1"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Teacher Dashboard"
+                    android:textColor="#17376D"
+                    android:textSize="23sp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/logoutButton"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:text="Logout"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#DC2626"/>
+        </LinearLayout>
+
+        <!-- Subject Management -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/card_bg"
+            android:padding="18dp"
+            android:orientation="vertical"
+            android:layout_marginBottom="22dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Manage Subjects"
+                android:textColor="#17376D"
+                android:textSize="19sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Select a subject to mark attendance"
+                android:textColor="#64748B"
+                android:textSize="13sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="16dp"/>
+
+            <Spinner
+                android:id="@+id/subjectSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:backgroundTint="#2563EB"
+                android:contentDescription="Select subject"/>
+
+            <Button
+                android:id="@+id/addSubjectButton"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="16dp"
+                android:text="+ Add New Subject"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#2563EB"/>
+        </LinearLayout>
+
+        <!-- Attendance Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mark Attendance"
+                android:textColor="#17376D"
+                android:textStyle="bold"
+                android:textSize="19sp"/>
+
+            <TextView
+                android:id="@+id/dateLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Date:"
+                android:textColor="#64748B"
+                android:textSize="13sp"
+                android:layout_marginTop="5dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Students"
+                android:textColor="#334155"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="12dp"/>
+
+            <LinearLayout
+                android:id="@+id/studentList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"/>
+
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
